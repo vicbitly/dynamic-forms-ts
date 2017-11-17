@@ -12,26 +12,19 @@ export const formConfig: FormDefinition = {
                 {
                     id: 'first-headline',
                     fieldType: 'content-headline',
-                    label: `Hey There!`,
+                    label: `Leading Text!`,
 
                     config: {}
                 },
                 {
                     id: 'first-blurb',
                     fieldType: 'content-normal',
-                    label: `Welcome to Bitly. We'd love to work with you to get the most out of the product`,
+                    label: `This is some explanatory content!`,
 
                     config: {}
                 },
                 {
-                    id: 'second-blurb',
-                    fieldType: 'content-normal',
-                    label: `Let us know what you plan on using us for:`,
-
-                    config: {}
-                },
-                {
-                    id: 'industry',
+                    id: 'fieldOne',
                     fieldType: 'pick-one-buttons',
                     label: ``,
                     required: true,
@@ -39,24 +32,12 @@ export const formConfig: FormDefinition = {
                     config: {
                         options: [
                             {
-                                key: 'digitalMarketing',
-                                display: 'Digital Marketing'
+                                key: 'stuff',
+                                display: 'Option One'
                             },
                             {
-                                key: 'productTech',
-                                display: 'Product / Tech'
-                            },
-                            {
-                                key: 'social',
-                                display: 'Social Media'
-                            },
-                            {
-                                key: 'prComms',
-                                display: 'PR / Comms'
-                            },
-                            {
-                                key: 'customerService',
-                                display: 'Customer Service'
+                                key: 'otherStuff',
+                                display: 'Option Two'
                             },
                             {
                                 key: '',
@@ -72,103 +53,60 @@ export const formConfig: FormDefinition = {
                 {
                     id: 'second-headline',
                     fieldType: 'content-headline',
-                    label: `Let's keep this short!`,
+                    label: `More pages to this form!`,
 
                     config: {}
                 },
                 {
-                    id: 'teamtype',
+                    id: 'fieldTwo',
                     fieldType: 'pick-one-buttons',
-                    label: `How do you use Bitly?`,
+                    label: `This is a second question`,
                     required: true,
 
                     config: {
                         options: [
                             {
-                                key: 'personal',
-                                display: 'Personal'
+                                key: 'things',
+                                display: 'Things!'
                             },
                             {
-                                key: 'work',
-                                display: 'Work'
+                                key: 'stuff',
+                                display: 'Stuff!'
                             },
                             {
-                                key: 'both',
-                                display: 'Both Personal and Work'
+                                key: 'nonsense',
+                                display: 'Nonsensical Noise'
                             }
                         ]
                     }
                 },
                 {
-                    id: 'companysize',
+                    id: 'fieldThree',
                     fieldType: 'pick-one-buttons',
-                    label: `What is the size of your company?`,
+                    label: `How are you?`,
                     required: true,
 
                     config: {
                         options: [
                             {
-                                key: '50',
-                                display: 'Less than 50'
+                                key: 'ok',
+                                display: 'Just Ok'
                             },
                             {
-                                key: '50-200',
-                                display: '50-200'
+                                key: 'good',
+                                display: 'Not Bad'
                             },
                             {
-                                key: '200-500',
-                                display: '200-500'
+                                key: 'great',
+                                display: 'Good'
                             },
                             {
-                                key: '500-1000',
-                                display: '500-1000'
+                                key: 'awesome',
+                                display: 'Best Ever'
                             },
                             {
-                                key: '1000',
-                                display: 'More than 1000'
-                            },
-                            {
-                                key: 'na',
-                                display: 'Not Applicable'
-                            }
-                        ]
-                    }
-                },
-                {
-                    id: 'jobtitle',
-                    fieldType: 'pick-one-buttons',
-                    label: `What is your job title?`,
-                    required: true,
-
-                    config: {
-                        options: [
-                            {
-                                key: 'owner',
-                                display: 'Owner'
-                            },
-                            {
-                                key: 'contributor',
-                                display: 'Individual Contributor'
-                            },
-                            {
-                                key: 'manager',
-                                display: 'Manager'
-                            },
-                            {
-                                key: 'director',
-                                display: 'Director'
-                            },
-                            {
-                                key: 'vp',
-                                display: 'VP'
-                            },
-                            {
-                                key: 'executive',
-                                display: 'Executive'
-                            },
-                            {
-                                key: 'na',
-                                display: 'Not Applicable'
+                                key: '',
+                                display: 'Other'
                             }
                         ]
                     }
