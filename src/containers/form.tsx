@@ -118,7 +118,8 @@ export class FormContainer extends React.Component<Props, State> {
                         onResponse: this.onFieldResponse
                     });
                 })}
-                <button onClick={this.onSubmit}>Responses</button>
+                {(this.state.form && this.state.currentPage === this.state.form.pages.length - 1) &&
+                    <button onClick={this.onSubmit}>{this.state.form && this.state.form.submitText}</button>}
             </div>
         );
     }
