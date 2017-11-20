@@ -1,9 +1,16 @@
-export enum ResponseStatus {
-    New = 'new',
-    Partial = 'partial',
-    Dismissed = 'dismissed',
-    Completed = 'completed'
-}
+export type FieldType =
+    'content-headline'
+    | 'content-normal'
+    | 'pick-one-buttons'
+    | 'pick-one-dropdown'
+    | 'text'
+    | 'text-area';
+
+export type ResponseStatus =
+    'new'
+    | 'partial'
+    | 'dismissed'
+    | 'completed';
 
 export interface FieldTextConfig {
     maxLength: number,
@@ -19,15 +26,20 @@ export interface FieldButtonListConfig {
     options: { key: string, display: string }[]
 }
 
+export interface FieldDropDownConfig {
+    options: { key: string, display: string }[]
+}
+
 export type DynamicFieldConfig =
     FieldTextConfig |
     FieldTextAreaConfig |
     FieldButtonListConfig |
+    FieldDropDownConfig |
     {};
 
 export interface FieldDefinition {
     id: string,
-    fieldType: string,
+    fieldType: FieldType,
     label: string,
     config: DynamicFieldConfig,
     required?: boolean,

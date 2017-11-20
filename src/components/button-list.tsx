@@ -11,8 +11,8 @@ export class ButtonListComponent extends React.Component<DynamicFieldProps, Stat
         super(props, context);
 
         this.getInitialState = this.getInitialState.bind(this);
-        this.onClick = this.onClick.bind(this);
         this.toggleTextbox = this.toggleTextbox.bind(this);
+        this.onClick = this.onClick.bind(this);
         this.onResponse = this.onResponse.bind(this);
         this.onTextChange = this.onTextChange.bind(this);
         this.onTextSubmit = this.onTextSubmit.bind(this);
@@ -27,8 +27,11 @@ export class ButtonListComponent extends React.Component<DynamicFieldProps, Stat
         };
     }
 
+    toggleTextbox() {
+        this.setState({...this.state, showOther: true});
+    }
+
     onClick(e: React.MouseEvent<HTMLButtonElement>) {
-        console.log(e.target); // tslint:disable-line:no-console
         const btn = e.target as HTMLButtonElement;
         if (btn.value === '') {
             this.toggleTextbox();
@@ -43,10 +46,6 @@ export class ButtonListComponent extends React.Component<DynamicFieldProps, Stat
 
     onTextSubmit() {
         this.onResponse(this.state.response);
-    }
-
-    toggleTextbox() {
-        this.setState({...this.state, showOther: true});
     }
 
     onResponse(response: string) {

@@ -20,6 +20,7 @@ type State = {
     form: FormDefinition | null;
     responses: PageResponses[];
     currentPage: number;
+    hasSkippedPages: boolean;
 };
 
 export class FormContainer extends React.Component<Props, State> {
@@ -27,9 +28,12 @@ export class FormContainer extends React.Component<Props, State> {
         super(props, context);
 
         this.getInitialState = this.getInitialState.bind(this);
+        this.mergeFormAndResponses = this.mergeFormAndResponses.bind(this);
         this.onNewForm = this.onNewForm.bind(this);
         this.onFieldResponse = this.onFieldResponse.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onSkip = this.onSkip.bind(this);
+        this.onDismiss = this.onDismiss.bind(this);
 
         this.state = this.getInitialState();
 
@@ -42,10 +46,17 @@ export class FormContainer extends React.Component<Props, State> {
         const state: State = {
             form: null,
             responses: [],
-            currentPage: 0
+            currentPage: 0,
+            hasSkippedPages: false
         };
 
         return state;
+    }
+
+    mergeFormAndResponses() {
+        // TODO: what's the shape of user info?
+        // need that to init the ResponseDefinition object
+        return {};
     }
 
     componentWillReceiveProps(nextProps: Props) {
@@ -96,16 +107,35 @@ export class FormContainer extends React.Component<Props, State> {
     }
 
     onSubmit() {
-        // TODO: merge responses into form
-        // const mergedResponse = this.mergeResponse(this.state.form, this.state.responses);
-        // this.props.onSave(mergedResponse);
+        const response = this.mergeFormAndResponses();
+        const status = this.state.hasSkippedPages ? 'partial' : 'completed';
         console.log(this.state); // tslint:disable-line:no-console
+
+        this.props.onSave(response, status);
+    }
+
+    onSkip() {
+        this.setState({...this.state, hasSkippedPages: true }, () => {
+            if (this.state.currentPage === (this.state.form && this.state.form.pages.length - 1)) {
+                this.onSubmit();
+            } else {
+                this.setState({...this.state, currentPage: (this.state.currentPage + 1)});
+            }
+
+            console.log('skipped');
+        });
+    }
+
+    onDismiss() {
+        const response = this.mergeFormAndResponses();
+        console.log('dismissed');
+
+        this.props.onSave(response, 'dismissed');
     }
 
     render() {
         return (
             <div>
-                <div>Form!</div>
                 {this.state.form && this.state.form.pages[this.state.currentPage].fields.map((field) => {
                     const TagName = mapFieldTypeToComponent(field.fieldType);
 
