@@ -127,6 +127,11 @@ export class FormContainer extends React.Component<Props, State> {
     }
 
     onDismiss() {
+        // TODO: form dismissal is done OUTSIDE or this component.
+        // this means the form response actually needs to be injected by a
+        // parent container, and we need to modify that here. This might
+        // mean bringing in omniscient, though that may need be usable for
+        // the marketing site?
         const response = this.mergeFormAndResponses();
         console.log('dismissed');
 
