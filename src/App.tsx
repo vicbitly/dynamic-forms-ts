@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { FormDefinition, ResponseDefinition } from './types';
-import { getForm } from './services/form-api';
+import { UserSession, FormDefinition, ResponseDefinition } from './types';
+import { getForm, saveResponse } from './services/form-api';
 import { FormContainer } from './containers/form';
 import './App.css';
 
@@ -10,6 +10,7 @@ interface Props {
 
 interface State {
     form: FormDefinition | null;
+    session: UserSession;
 }
 
 class App extends React.Component<Props, State> {
@@ -28,7 +29,16 @@ class App extends React.Component<Props, State> {
     }
 
     getInitialState() {
-        return { form: null };
+        return {
+          form: null,
+
+          // these are inlined, so assume they're in state
+          session: {
+            userId: 'vicbitly',
+            orgGuid: 'O01106zkyJS',
+            brandGuid: 'B01102LRB8d'
+          }
+        };
     }
 
     async getForm() {
@@ -36,13 +46,14 @@ class App extends React.Component<Props, State> {
     }
 
     onSave(responses: ResponseDefinition) {
-        console.log(responses); // tslint:disable-line:no-console
+        saveResponse(responses);
     }
 
     render() {
         return (
             <FormContainer
                 form={this.state.form}
+                session={this.state.session}
                 onSave={this.onSave}
             />
         );

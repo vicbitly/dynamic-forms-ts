@@ -1,3 +1,9 @@
+export interface UserSession {
+  userId: string;
+  orgGuid: string;
+  brandGuid: string;
+}
+
 export type FieldType =
     'content-headline'
     | 'content-normal'
